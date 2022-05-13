@@ -1,5 +1,8 @@
 package com.example.springshell.commands;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellComponent;
 
@@ -8,6 +11,9 @@ import java.util.Scanner;
 
 @ShellComponent
 public class MyCommands {
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
 
     @ShellMethod("Add two integers together.")
     public String add(int a) {
@@ -22,5 +28,10 @@ public class MyCommands {
         }
 
         return "end" + a;
+    }
+
+    @ShellMethod("Add two integers together.")
+    public Long mo(int a) {
+        return mongoTemplate.count(new Query(),"t_person");
     }
 }
