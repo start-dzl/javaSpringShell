@@ -8,11 +8,23 @@ spring:
       database: "learn"
       host: 47.101.169.172
   datasource:
-    url: jdbc:mysql://localhost:3306/MyUploader?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    servlet:
-      multipart:
-        max-file-size: 10000MB
-        max-request-size: 100000MB
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/MyUploader?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: 1234
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+#spring:
+#  datasource:
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    url: jdbc:sqlserver://172.20.100.232:1433;databaseName=XXX
+#    username: sa
+#    password: ###
+
